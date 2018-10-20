@@ -20,11 +20,11 @@ def isPrime(n):
 def main():
    primes = []
 
-   for n in range(1, 1000):
+   for n in range(1, int(sys.argv[1])):
       if isPrime(n):
         primes.append(n)
 
-   sys.stdout.write(str(len(primes)))
+   sys.stdout.write(str(primes))
    sys.stdout.write('\n')
 
 if __name__ == "__main__":
