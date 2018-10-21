@@ -29,7 +29,7 @@ def check_parameters(arguments):
       return False
 
 def split(arguments):
-   sum = int(arguments[2])
+   sum = float(arguments[2])
    approxDecimal = int(arguments[3])
    a = round(sum / FI, approxDecimal)
    b = sum - a
