@@ -2,20 +2,45 @@
 
 import sys
 
-def main():
-   fi = 1.6180339887
-   sys.stdout.write('[Golden-ratio irrational proportion value is ' + str(fi) + '..]\n')
 
-   if len(sys.argv) < 4:
-      sys.stdout.writelines('Argument missing: command format should look like the following\n' +
-          '  "python <program-name> limit[number] approxDecimal[number] step[number]"\n')
-      return
+FI = 1.61803398874989
 
+def get_function_name(arguments):
+   return '' if len(arguments) < 2 else arguments[1]
+
+def check_parameters(arguments):
+   f_name = get_function_name(arguments)
+   if f_name == 'pairs':
+      if len(arguments) == 5:
+         return True
+      else:
+         sys.stdout.write('Argument missing: command format should look like the following\n' +
+         '  "python golden-ratio.py pair limit<number> approxDecimal<number> step<number>"\n')
+         return False
+   elif f_name == 'split':
+      if len(arguments) == 4:
+         return True
+      else:
+         sys.stdout.write('Argument missing: command format should look like the following\n' +
+         '  "python golden-ratio.py sum<number> approxDecimal<number>"\n')
+         return False
+   else:
+      sys.stdout.write('Unknown function "' + f_name + '"\n')
+      return False
+
+def split(arguments):
+   sum = int(arguments[2])
+   approxDecimal = int(arguments[3])
+   a = round(sum / FI, approxDecimal)
+   b = sum - a
+   sys.stdout.write('a: ' + str(a) + ' , b: ' + str(b) + '\n')
+
+def pairs(arguments):
    pairs = []
 
-   limit = int(sys.argv[1])
-   approxDecimal = int(sys.argv[2])
-   step = float(sys.argv[3])
+   limit = int(arguments[2])
+   approxDecimal = int(arguments[3])
+   step = float(arguments[4])
 
    b = 1
    while b < limit:
@@ -32,6 +57,18 @@ def main():
       for pair in pairs:
          sys.stdout.write('a: ' + str(pair.get('a')) + ' , b: ' + str(pair.get('b')))
          sys .stdout.write('\n')
+
+def main():
+   sys.stdout.write('[Golden-ratio irrational proportion value is ' + str(FI) + '..]\n')
+
+   if not check_parameters(sys.argv):
+      return
+
+   f_name = get_function_name(sys.argv)
+   if f_name == 'pairs':
+      pairs(sys.argv)
+   elif f_name == 'split':
+      split(sys.argv)
 
 if __name__ == "__main__":
    main()
