@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import sys, os, ConfigParser, datetime
+import sys
 
 def isDivisorOf(d, n):
    return n%d == 0
