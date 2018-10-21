@@ -20,7 +20,7 @@ def isPrime(n):
 def main():
    if len(sys.argv) < 2:
       sys.stdout.writelines('Argument missing: command format should look like the following\n' +
-          '  "python <program-name> limit[number]"\n')
+          '  "python prime-numbers.py limit<number>"\n')
       return
 
    primes = []
