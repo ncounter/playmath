@@ -18,9 +18,16 @@ def isPrime(n):
    return True
 
 def main():
+   if len(sys.argv) < 2:
+      sys.stdout.writelines('Argument missing: command format should look like the following\n' +
+          '  "python <program-name> limit[number]"\n')
+      return
+
    primes = []
 
-   for n in range(1, int(sys.argv[1])):
+   limit = int(sys.argv[1])
+
+   for n in range(1, limit):
       if isPrime(n):
         primes.append(n)
 
